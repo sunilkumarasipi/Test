@@ -14,10 +14,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { NgbdDatepickerPopup } from '../app/helpers/date-picker/datepicker-popup';
 import { NgbDateCustomParserFormatter } from "./helpers/date-formatter";
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { CommonPagingComponent } from './helpers/common-paging/common-paging.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CommonPagingComponent,
     //NgbdDatepickerPopup
   ],
   imports: [
