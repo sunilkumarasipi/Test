@@ -1,0 +1,74 @@
+<!-- <div class="container"> -->
+<div class="row">
+    <div class="col-sm-5">
+        <div class="card m-3">
+            <h5 class="card-header">School</h5>
+            <div class="card-body">
+                <form name="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="name">School Name</label>
+                            <input class="form-control" type="text" name="name" [(ngModel)]="model.name"
+                                #schoolName="ngModel" [ngClass]="{'is-invalid': (f.submitted && schoolName.invalid) }"
+                                required />
+                            <div *ngIf="f.submitted && schoolName.invalid" class="invalid-feedback">
+                                <div *ngIf="schoolName.errors.required">School Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary mr-1">Submit</button>
+                        <button class="btn btn-secondary" type="reset">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-7">
+
+        <div class="card m-3">
+            <h5 class="card-header">Schools:</h5>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead class="thead-dark">
+                        <th>School Name</th>
+                        <th>Created Date</th>
+                        <th>Modified Date</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let school of pagingList">
+                            <td>{{school.name}}</td>
+                            <td>{{school.insDate | date:'dd/MM/yyyy h:mm:ss a'}}</td>
+                            <td>{{school.modiDate | date:'dd/MM/yyyy h:mm:ss a'}}</td>
+                            <td>
+                                <a class="text-primary" (click)='onEdit(school.schoolId)'>Edit</a>
+                                &nbsp;<a class="text-danger">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <ul class="pagination pagination justify-content-end" style="margin:20px 0">
+                    <li class="page-item" *ngIf="pageNumber > 1">
+                        <a class="page-link" (click)="getPaginatedData(pageNumber - 1)">Previous</a>
+                    </li>
+                    <li *ngFor="let page of pageCntArr" class="page-item" [ngClass]="{'active':(page == pageNumber)}">
+                        <a class="page-link" (click)="getPaginatedData(page)">{{ page }}</a>
+                    </li>
+                    <li class="page-item" *ngIf="pageNumber < pageCnt">
+                        <a class="page-link" (click)="getPaginatedData(pageNumber + 1)">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- </div> -->
+
+
+
+<!-- {{this.model|json}} -->

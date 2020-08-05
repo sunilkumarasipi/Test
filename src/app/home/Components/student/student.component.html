@@ -1,0 +1,234 @@
+<div class="row">
+    <div class="card m-3" style="width: 100%;">
+        <h5 class="card-header">Student</h5>
+        <div class="card-body">
+            <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <div class="row">
+                        
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" formControlName="name"
+                                            [ngClass]="{ 'is-invalid': (submitted||f.name.touched) && f.name.errors }" />
+                                        <div *ngIf="(submitted||f.name.touched) && f.name.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.name.errors.required">Name is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label for="class">Class</label>
+                                        <input type="text" formControlName="class" class="form-control"
+                                            [ngClass]="{'is-invalid': (submitted||f.class.touched) && f.class.errors}" />
+                                        <div *ngIf="(submitted||f.class.touched) && f.class.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.class.errors.required">Class is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <label for="address">Address</label>
+                                        <textarea type="text" formControlName="address" class="form-control"
+                                            [ngClass]="{ 'is-invalid': (submitted||f.address.touched) && f.address.errors }"></textarea>
+                                        <div *ngIf="(submitted||f.address.touched) && f.address.errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="f.address.errors.required">Address is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="image-preview mb-3">
+                                <img [src]="f.photo.value" height="150" width="150" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="dateOfBirth">DOB</label>
+                            <!-- <input type="text" class="form-control" placeholder="dd-mm-yyyy"
+                                formControlName="dateOfBirth"  
+                                [ngClass]="{ 'is-invalid': (submitted||f.dateOfBirth.touched) && f.dateOfBirth.errors }" /> -->
+
+                            <!-- <ngbd-datepicker-popup></ngbd-datepicker-popup> -->
+
+                            <div class="input-group">
+                                <input class="form-control" placeholder="dd/mm/yyyy" formControlName="dob"
+                                    name="dp" ngbDatepicker #d="ngbDatepicker" [minDate]="{year: 1990, month: 1, day: 1}"
+                                    [ngClass]="{ 'is-invalid': (submitted||f.dob.touched) && f.dob.errors }" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+                                        type="button"></button>
+                                </div>
+                                <div *ngIf="(submitted||f.dob.touched) && f.dob.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.dob.errors.required">DOB is required</div>
+                            </div>
+                            </div>
+                            <!-- {{f.dateOfBirth.errors|json }} {{f.dateOfBirth.touched|json}} -->
+                            <!-- </div> -->
+                            
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="schoolId">School</label>
+                            <select class="form-control" formControlName="schoolId"
+                                [ngClass]="{'is-invalid': (submitted||f.schoolId.touched) && f.schoolId.errors}">
+                                <option value="null">--Select--</option>
+                                <option *ngFor="let school of schoolList" [value]="school.schoolId">{{school.name}}
+                                </option>
+                            </select>
+                            <div *ngIf="(submitted||f.schoolId.touched) && f.schoolId.errors" class="invalid-feedback">
+                                <div *ngIf="f.schoolId.errors.required">School is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="schoolId">Gender</label>
+                            <div class="form-control"
+                                [ngClass]="{ 'is-invalid': (submitted||f.gender.touched) && f.gender.errors }">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="M" name="gender"
+                                            formControlName="gender">Male
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="F" name="gender"
+                                            formControlName="gender">Female
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" value="O" name="gender"
+                                            formControlName="gender">Others
+                                    </label>
+                                </div>
+                            </div>
+                            <div *ngIf="(submitted||f.gender.touched) && f.gender.errors" name="gender"
+                                class="invalid-feedback">
+                                <div *ngIf="f.gender.errors.required">Gender is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="guardianName">Guardian-Name</label>
+                            <input type="text" class="form-control" formControlName="guardianName"
+                                [ngClass]="{ 'is-invalid': (submitted||f.guardianName.touched) && f.guardianName.errors }" />
+                            <div *ngIf="(submitted||f.guardianName.touched) && f.guardianName.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.guardianName.errors.required">Guardian-Name is required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="fees">Fees</label>
+                            <input type="text" formControlName="fees" class="form-control"
+                                [ngClass]="{'is-invalid': (submitted||f.fees.touched) && f.fees.errors}" />
+                            <div *ngIf="(submitted||f.fees.touched) && f.fees.errors" class="invalid-feedback">
+                                <div *ngIf="f.fees.errors.required">Fees is required</div>
+                                <div *ngIf="f.fees.errors.pattern">Only two decimal places allowed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label for="mobile">Mobile</label>
+                            <input type="text" class="form-control" formControlName="mobile"
+                                [ngClass]="{ 'is-invalid': (submitted||f.mobile.touched) && f.mobile.errors }" />
+                            <div *ngIf="(submitted||f.mobile.touched) && f.mobile.errors" class="invalid-feedback">
+                                <div *ngIf="f.mobile.errors.required">Mobile number is required</div>
+                                <div *ngIf="f.mobile.errors.pattern || f.mobile.errors.maxlength">Invalid mobile (should
+                                    consist
+                                    of 10 digits)</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="email">Email</label>
+                            <input type="text" formControlName="email" class="form-control"
+                                [ngClass]="{'is-invalid': (submitted||f.email.touched) && f.email.errors}" />
+                            <div *ngIf="(submitted||f.email.touched) && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.pattern">Invalid Email</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <input type="file" (change)="fileProgress($event)">
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="photo">Upload Photo</label>
+                    <input type="file" id="photo" class="form-control-file" (change)="fileProgress($event)">
+                </div>
+
+
+                <!-- <div formArrayName="subjects">
+                    <div *ngFor="let subject of subjects; let i = index;">
+                      <div [formGroupName]="i">
+                        
+                        <input 
+                          type="text" 
+                          name="currency"
+                          formControlName="subjectName">
+                      </div>
+                    </div>
+                  </div> -->
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <label for="comments">Comments</label>
+                            <textarea type="text" formControlName="comments" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <label for="comments">Comments</label>
+                            <textarea type="text" formControlName="subject" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Submit
+                    </button>
+                    &nbsp;<button class="btn btn-primary" *ngIf="this.f.studentId.value==0" >
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<!-- {{studentForm.controls}} -->

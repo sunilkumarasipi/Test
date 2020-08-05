@@ -1,0 +1,51 @@
+<div class="card m-3">
+    <h5 class="card-header">All Students:</h5>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Class</th>
+                    <th>DOB</th>
+                    <th>School</th>
+                    <th>Gender</th>
+                    <th>Guardian-Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Fees</th>
+                    <th>Comments</th>
+                    <th>Created Date</th>
+                    <th>Modified Date</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of studentList">
+                        <td>{{student.name}}</td>
+                        <td>{{student.address}}</td>
+                        <td>{{student.class}}</td>
+                        <td>{{student.dateOfBirth|date:'dd/MM/yyyy'}}</td>
+                        <td>{{student.schoolName}}</td>
+                        <td [ngSwitch]="student.gender">
+                            <span *ngSwitchCase="'M'">Male</span>
+                            <span *ngSwitchCase="'F'">Female</span>
+                            <span *ngSwitchCase="'O'">Others</span>
+                            <span *ngSwitchDefault>NA</span>
+                        </td>
+                        <td>{{student.guardianName}}</td>
+                        <td>{{student.mobile}}</td>
+                        <td>{{student.email}}</td>
+                        <td>{{student.fees}}</td>
+                        <td>{{student.comments}}</td>
+                        <td>{{student.insDate | date:'dd/MM/yyyy h:mm:ss a'}}</td>
+                        <td>{{student.modiDate | date:'dd/MM/yyyy h:mm:ss a'}}</td>
+                        <td>
+                            <a (click)="editStudent(student.studentId)" class="text-primary">Edit</a>
+                            &nbsp; <a (click)="deleteStudent(student.studentId)" class="text-danger">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
