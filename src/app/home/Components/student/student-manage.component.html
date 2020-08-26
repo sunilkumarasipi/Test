@@ -1,9 +1,23 @@
 <div class="card m-3">
-    <h5 class="card-header">All Students:</h5>
+    <div class="card-header">
+        <div style="float: left;"><h5>All Students: </h5></div>
+        <div style="float: right;">
+            <div class="radio">
+                <input type="radio" checked class="form-check-input" name="viewType" value="L" (click)="selectViewType($event)">List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" class="form-check-input" name="viewType" value="T" (click)="selectViewType($event)">Thumbnail
+            </div>
+        </div>
+    </div>
+    
     <div class="card-body">
-        <div class="table-responsive">
+        <div *ngIf="viewType=='T'">
+            <app-student-display *ngFor="let student of pagingList" [student]="student">
+            </app-student-display>
+        </div>
+        <div class="table-responsive" *ngIf="viewType=='L'">
             <table class="table table-bordered">
                 <thead class="thead-dark">
+                    <th>SlNo</th>
                     <th>Name</th>
                     <th>Address</th>
                     <th>Class</th>
@@ -20,11 +34,12 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let student of studentList">
-                        <td>{{student.name}}</td>
+                    <tr *ngFor="let student of pagingList; let i = index;">
+                        <td>{{i+1}}</td>
+                        <td>{{student.name|studentTitle:student.gender}}</td>
                         <td>{{student.address}}</td>
                         <td>{{student.class}}</td>
-                        <td>{{student.dateOfBirth|date:'dd/MM/yyyy'}}</td>
+                        <td>{{student.dateOfBirth|date:'mediumDate'}}</td>
                         <td>{{student.schoolName}}</td>
                         <td [ngSwitch]="student.gender">
                             <span *ngSwitchCase="'M'">Male</span>
@@ -35,7 +50,7 @@
                         <td>{{student.guardianName}}</td>
                         <td>{{student.mobile}}</td>
                         <td>{{student.email}}</td>
-                        <td>{{student.fees}}</td>
+                        <td>{{student.fees|currency:'INR':'symbol':'1.2-2'}}</td>
                         <td>{{student.comments}}</td>
                         <td>{{student.insDate | date:'dd/MM/yyyy h:mm:ss a'}}</td>
                         <td>{{student.modiDate | date:'dd/MM/yyyy h:mm:ss a'}}</td>
@@ -48,4 +63,8 @@
             </table>
         </div>
     </div>
+    <div class="card-footer">
+        <app-common-paging [totalRecords]="totalRecords" [recordsPerPage]="recordsPerPage"  [listArr]="studentList"
+        (onPageChange)="displayActivePage($event)" ></app-common-paging>
+     </div>
 </div>

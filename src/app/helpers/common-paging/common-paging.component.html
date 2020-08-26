@@ -1,0 +1,11 @@
+<ul class="pagination pagination justify-content-end" style="margin:20px 0">
+    <li class="page-item" *ngIf="activePage > 1">
+        <a class="page-link" (click)="onPageClick(activePage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let item of pages" class="page-item" [ngClass]="{'active':(item == activePage)}">
+        <a class="page-link" (click)="onPageClick(item)">{{ item }}</a>
+    </li>
+    <li class="page-item" *ngIf="activePage < pages.length"> 
+        <a class="page-link" (click)="onPageClick(activePage + 1)">Next</a>
+    </li>
+</ul>

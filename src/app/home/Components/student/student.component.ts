@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Student } from 'src/app/Models/student';
 import { isNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Utility } from "../../../helpers/utility-functions";
+import { IDropdownSettings} from 'ng-multiselect-dropdown';
 
 
 @Component({
@@ -28,6 +29,10 @@ export class StudentComponent implements OnInit {
   schoolList: School[];
   //utility: Utility;
 
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings:IDropdownSettings = {};
+
   constructor(private formBuilder: FormBuilder
     , private schoolService: SchoolService
     , private studentService: StudentService
@@ -37,13 +42,49 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.bindSubjects();
     this.initializeStudentForm();
     this.getAllSchools();
+    
     let id = this.activatedRoute.snapshot.paramMap.get("id");
     //Edit mode
-    // if (id != null) {
-    //   this.getStudentById(id);
-    // }
+    if (id != null) {
+      this.getStudentById(id);
+    }
+  }
+
+  bindSubjects(){
+    this.dropdownList = [
+      { item_id: 1, item_text: 'English' },
+      { item_id: 2, item_text: 'Maths' },
+      { item_id: 3, item_text: 'Telugu' }
+    ];
+    // this.studentForm.value.subst.patchValue([
+    //   { item_id: 1, item_text: 'English' },
+    //   { item_id: 3, item_text: 'Telugu' }
+    // ]);
+
+    this.selectedItems = [
+      { item_id: 1, item_text: 'English' },
+      { item_id: 3, item_text: 'Telugu' }
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
   initializeStudentForm() {
@@ -67,23 +108,21 @@ export class StudentComponent implements OnInit {
       modiBy: [null],
       modiDate: [null],
       delStatus: ['N'],
-      subjects: this.formBuilder.array([this.formBuilder.group({
-        subjectId: [0],
-        subjectName: ['',Validators.required]
-      })])
+     // subst:[ this.selectedItems,[Validators.required]],
+      // subjects: this.formBuilder.array([this.formBuilder.group({
+      //   subjectId: [0],
+      //   name: ['',Validators.required]
+      // })])
     });
-    
   }
 
 
   addSubjects(){
     this.studentForm.value.subjects.push(this.formBuilder.group({
       subjectId: [0],
-      subjectName: ['',Validators.required]
+      name: ['',Validators.required]
     }))
   }
-
-
 
   get f() { return this.studentForm.controls; }
 

@@ -13,18 +13,49 @@ import { SchoolService } from '../../../Services/school.service';
 export class StudentManageComponent implements OnInit {
 
   studentList: Student[];
+  pagingList: Student[];
   schoolList: School[];
+  totalRecords: number = 0;
+  recordsPerPage: number = 2;
+  viewType: string="L";
+
   constructor(public studentService: StudentService
     , private schoolService: SchoolService
     , private router: Router) { }
 
   ngOnInit(): void {
+    //alert('ngOnInit');
     this.loadAllStudents();
+  }
+
+  activePage:number = 0;  
+  
+  displayActivePage(pagingList: Student[]) {
+    //alert(activePageNumber);
+    //this.activePage = activePageNumber;
+    //this.pageNumber = pageNumber;
+    //console.log(this.studentList);
+    //this.pagingList = this.studentList ? this.studentList.slice((activePageNumber - 1) * this.recordsPerPage, activePageNumber * this.recordsPerPage):[];
+    this.pagingList = pagingList;
+  }
+
+  selectViewType(event: any){
+    this.viewType = event.target.value;
+    if ( this.viewType == "L") {
+      this.recordsPerPage = 2;
+    }
+    else {
+      this.recordsPerPage = 1;
+    }
+    console.log(event.target.value);
   }
 
   loadAllStudents() {
     this.studentService.getAll().subscribe(data => {
       this.studentList = data;
+      this.totalRecords = data.length;
+      //this.recordsPerPage = 2;
+
       this.loadSchools();
     },
       error => {

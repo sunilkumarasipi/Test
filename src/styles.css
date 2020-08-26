@@ -33,7 +33,7 @@ body {
 @media (min-width: 576px)
 {
   .card-body {
-    margin-left: 40px;
+   /* margin-left: 40px;*/
     margin-right: 40px;
 }
 }

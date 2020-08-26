@@ -1,0 +1,14 @@
+<div class="card m-3" style="width: 100%;">
+    <div class="card-header pointerCursor selectedHeader" #headerRef (click)="headerClick()" >
+        <!-- <ng-content select="#accHeader"></ng-content> -->
+      <h6> {{title}}</h6> 
+    </div>
+    <div class="card-body" [hidden]="isHidden" >
+        <ng-content select="#accBody"></ng-content>
+    </div>
+    <div class="card-footer" [hidden]="isHidden">
+        <ng-content select="#accFooter"></ng-content>
+    </div>
+</div>
+
+

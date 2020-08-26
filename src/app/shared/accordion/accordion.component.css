@@ -1,0 +1,10 @@
+.pointerCursor{
+    cursor: pointer;
+}
+
+.selectedHeader{
+    color: #fff;
+    background-color: #006288;
+    border-color: #006288
+}
+

@@ -1,0 +1,40 @@
+<!-- <div class="card m-3" style="width: 100%;">
+    <div class="card-header">
+        <h5>{{student.name}}</h5>
+    </div>
+    <div class="card-body">
+        <div class="image-preview mb-3">
+            <img [src]="student.photo" height="150" width="150" />
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="form-group">
+            <button class="btn btn-primary">
+                Edit
+            </button>          
+            &nbsp;<button class="btn btn-primary">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
+ -->
+ 
+<app-accordion [title]="student.name">
+    <div id="accBody">
+        <div class="image-preview mb-3">
+            <img [src]="student.photo" height="150" width="150" />
+        </div>
+    </div>
+    <div id="accFooter">
+        <div class="form-group">
+            <button class="btn btn-primary">
+                Edit
+            </button>          
+            &nbsp;<button class="btn btn-primary">
+                Delete
+            </button>
+        </div>
+    </div> 
+</app-accordion>
+ 
