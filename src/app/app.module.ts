@@ -14,25 +14,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { NgbdDatepickerPopup } from '../app/helpers/date-picker/datepicker-popup';
 import { NgbDateCustomParserFormatter } from "./helpers/date-formatter";
 import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-<<<<<<< HEAD
 //import { CommonPagingComponent } from './helpers/common-paging/common-paging.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 //import { AccordionComponent } from './shared/accordion/accordion.component';
 //import { CommonPagingComponent } from './helpers/common-paging/common-paging.component';
-=======
-
->>>>>>> 27ffa57511581ce64d422a364cac473b193bd2b6
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
     //AccordionComponent,
     //CommonPagingComponent,
     //CommonPagingComponent,
-=======
-    
->>>>>>> 27ffa57511581ce64d422a364cac473b193bd2b6
     //NgbdDatepickerPopup
   ],
   imports: [
