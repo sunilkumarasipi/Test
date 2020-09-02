@@ -4,6 +4,7 @@ import { Student } from '../../../Models/student';
 import { School } from '../../../Models/school';
 import { Router } from "@angular/router";
 import { SchoolService } from '../../../Services/school.service';
+import { NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-student-manage',
@@ -16,15 +17,17 @@ export class StudentManageComponent implements OnInit {
   pagingList: Student[];
   schoolList: School[];
   totalRecords: number = 0;
-  recordsPerPage: number = 2;
-  viewType: string="L";
+  recordsPerPage: number = 1;
+  viewType: string="T";
 
   constructor(public studentService: StudentService
     , private schoolService: SchoolService
-    , private router: Router) { }
+    , private router: Router
+    , private spinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     //alert('ngOnInit');
+    this.spinnerService.show();
     this.loadAllStudents();
   }
 
@@ -67,6 +70,7 @@ export class StudentManageComponent implements OnInit {
     this.schoolService.getAll().subscribe(data => {
       this.schoolList = data;
       this.studentList.forEach(x => x.schoolName = (this.schoolList.find(y => y.schoolId == x.schoolId).name));
+      this.spinnerService.hide();
     },
       error => {
         console.error(error);

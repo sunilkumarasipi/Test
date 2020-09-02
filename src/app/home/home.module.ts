@@ -15,17 +15,21 @@ import { CommonPagingComponent } from "../helpers/common-paging/common-paging.co
 import { StudentDisplayComponent } from './Components/student/student-display.component';
 import { AccordionComponent } from '../shared/accordion/accordion.component';
 import { StudentTitlePipe } from '../shared/student-title.pipe';
+import{ NgxSpinnerModule } from 'ngx-spinner';
+//import { NgxSpinnerComponent} from 'ngx-spinner';
 
 @NgModule({
   declarations: [HomeComponent, CommonPagingComponent, StudentComponent,
     AlertComponent, SchoolComponent, NgbdDatepickerPopup,
-    StudentManageComponent, StudentDisplayComponent, AccordionComponent,StudentTitlePipe],
+    StudentManageComponent, StudentDisplayComponent, AccordionComponent,StudentTitlePipe
+    ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxSpinnerModule,
     NgMultiSelectDropDownModule.forRoot()
   ]
 })

@@ -3,8 +3,8 @@
         <div style="float: left;"><h5>All Students: </h5></div>
         <div style="float: right;">
             <div class="radio">
-                <input type="radio" checked class="form-check-input" name="viewType" value="L" (click)="selectViewType($event)">List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" class="form-check-input" name="viewType" value="T" (click)="selectViewType($event)">Thumbnail
+                <input type="radio"  class="form-check-input" name="viewType" value="L" (click)="selectViewType($event)">List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" checked class="form-check-input" name="viewType" value="T" (click)="selectViewType($event)">Thumbnail
             </div>
         </div>
     </div>
@@ -68,3 +68,7 @@
         (onPageChange)="displayActivePage($event)" ></app-common-paging>
      </div>
 </div>
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+    <p style="color: white">Please Wait. </p>  
+</ngx-spinner>   

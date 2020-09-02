@@ -3,6 +3,7 @@ import { Base } from './base';
 export class Student extends Base {
     studentId: number;
     name: string;
+    code: string;
     address: string;
     class: string;
     dateOfBirth: Date;

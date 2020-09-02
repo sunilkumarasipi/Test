@@ -18,6 +18,7 @@ import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 //import { AccordionComponent } from './shared/accordion/accordion.component';
 //import { CommonPagingComponent } from './helpers/common-paging/common-paging.component';
+import{ NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     NgMultiSelectDropDownModule.forRoot()
     //NgbModule
   ],

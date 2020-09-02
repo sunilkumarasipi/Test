@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Student } from 'src/app/Models/student';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-student-display',
@@ -9,9 +10,13 @@ import { Student } from 'src/app/Models/student';
 export class StudentDisplayComponent implements OnInit {
 
   @Input() student : Student;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  editStudent(id: any){
+    this.router.navigate(['home/student', id]);
   }
 
 }

@@ -10,11 +10,11 @@ import { Student } from 'src/app/Models/student';
 import { isNumber } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { Utility } from "../../../helpers/utility-functions";
 import { IDropdownSettings} from 'ng-multiselect-dropdown';
-
+import { NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-student',
-  templateUrl: './student.component.html',
+  templateUrl:'./student.component.html',
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent implements OnInit {
@@ -37,7 +37,8 @@ export class StudentComponent implements OnInit {
     , private schoolService: SchoolService
     , private studentService: StudentService
     , private activatedRoute: ActivatedRoute
-    , private router: Router) { }
+    , private router: Router
+    , private spinnerService:NgxSpinnerService) { }
 
 
   ngOnInit(): void {
@@ -91,6 +92,7 @@ export class StudentComponent implements OnInit {
     this.studentForm = this.formBuilder.group({
       studentId: [0],
       name: [null, [Validators.required, Validators.maxLength(50)]],
+      code: [{value:null, disabled:false }],
       address: [null, [Validators.required, Validators.maxLength(50)]],
       class: [null, [Validators.required, Validators.maxLength(5)]],
       dateOfBirth: [null],
@@ -142,6 +144,7 @@ export class StudentComponent implements OnInit {
     this.studentForm.setValue({
       studentId: student.studentId,
       name: student.name,
+      code: student.code,
       address: student.address,
       class: student.class,
       dateOfBirth: student.dateOfBirth,
@@ -191,17 +194,19 @@ export class StudentComponent implements OnInit {
   }
 
   onSubmit() {
+
+    this.spinnerService.show();
+
     this.submitted = true;
     // stop here if form is invalid
     if (this.studentForm.invalid) {
       return;
     }
-
-
     this.f.dateOfBirth.setValue(Utility.convertNgbDateToJsonDate(this.f.dob.value));
 
     this.f.schoolId.setValue(parseInt(this.f.schoolId.value));
     this.f.fees.setValue(parseFloat(this.f.fees.value));
+    this.f.code.setValue("NA");
     this.loading = true;
 
     if (this.f.studentId.value == 0) {
@@ -211,11 +216,14 @@ export class StudentComponent implements OnInit {
           data => {
             this.loading = false;
             this.router.navigate(['home/student']);
+            this.spinnerService.hide();
           },
           error => {
             window.alert(error);
             console.error(error);
             this.loading = false;
+            this.spinnerService.hide();
+            //this.router.navigate(['home/student']);
           },
         );
     }
@@ -227,10 +235,12 @@ export class StudentComponent implements OnInit {
           data => {
             this.loading = false;
             this.router.navigate(['home/student']);
+            this.spinnerService.hide();
           },
           error => {
             window.alert("error");
             this.loading = false;
+            this.spinnerService.hide();
           },
         );
 
