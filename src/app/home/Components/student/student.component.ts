@@ -50,6 +50,7 @@ export class StudentComponent implements OnInit {
     let id = this.activatedRoute.snapshot.paramMap.get("id");
     //Edit mode
     if (id != null) {
+      this.spinnerService.show();
       this.getStudentById(id);
     }
   }
@@ -132,10 +133,12 @@ export class StudentComponent implements OnInit {
     this.studentService.getById(id)
       .subscribe(
         data => {
-          this.setStudent(data)
+          this.setStudent(data);
+          this.spinnerService.hide();
         },
         error => {
           console.error(error);
+          this.spinnerService.hide();
         }
       )
   }
