@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/90817fd0-5ef6-4082-bf72-bb316eb95735/resourceGroups/ManagedPlatform/providers/Microsoft.Web/sites/suniltmsweb",
+    "appService.deploySubpath": "dist\\TMS"
+}

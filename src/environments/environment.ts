@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiUrl:"http://localhost:81/api"
+  // baseApiUrl:"http://localhost:81/api"
+  baseApiUrl:"https://suniltmsapi.azurewebsites.net/api"
  // baseApiUrl:"http://localhost:50415/api"
 };
 

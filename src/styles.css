@@ -1,14 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-@media (min-width: 576px)
+/* @media (min-width: 576px)
 {
     .jumbotron {
      padding: 1rem 2rem !important; 
 }
-}
+} */
 body {
   font-size: .9rem !important;
 }
-
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  /* margin-right: -50px;
+  margin-left: -50px; */
+}
+.container {
+  width: 100%;
+  padding-right: 1px;
+  padding-left: 1px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 @media (min-width: 576px)
 {

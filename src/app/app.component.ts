@@ -17,7 +17,10 @@ export class AppComponent  {
   ) {
       this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
-
+  addActiveClass(evt:any){
+    evt.target.classList.addActiveClass
+console.log(evt.target.classList.add('active'));
+  }
   logout() {
       this.authenticationService.logout();
       this.router.navigate(['/login']);
