@@ -50,3 +50,7 @@ body {
 }
 }
 
+.card-header a i {
+  text-decoration:none;
+  color: black;
+}

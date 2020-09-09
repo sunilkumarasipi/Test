@@ -42,8 +42,9 @@
                             <td>{{school.insDate | date:'dd/MM/yyyy h:mm:ss a'}}</td>
                             <td>{{school.modiDate | date:'dd/MM/yyyy h:mm:ss a'}}</td>
                             <td>
-                                <a class="text-primary" (click)='onEdit(school.schoolId)'>Edit</a>
-                                &nbsp;<a class="text-danger">Delete</a>
+                                <a class="text-primary" (click)='onEdit(school.schoolId)'>
+                                    <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                &nbsp;<a class="text-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     </tbody>

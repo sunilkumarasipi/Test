@@ -1,10 +1,33 @@
 <div class="card m-3">
     <div class="card-header">
-        <div style="float: left;"><h5>All Students: </h5></div>
+        <!-- <div style="float: left;"><h5></h5></div>
         <div style="float: right;">
             <div class="radio">
-                <input type="radio"  class="form-check-input" name="viewType" value="L" (click)="selectViewType($event)">List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" checked class="form-check-input" name="viewType" value="T" (click)="selectViewType($event)">Thumbnail
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                <input type="radio"  class="form-check-input" name="viewType" value="L" (click)="selectViewType($event)">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                <input type="radio" checked class="form-check-input" name="viewType" value="T" (click)="selectViewType($event)">
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-10">
+              <h5 >All Students: </h5>
+            </div>
+            <div class="col-md-2 float-right">
+                <!-- <button class="btn btn-primary"> -->
+                   
+                    <a routerLink="/home/student-create" ><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                <!-- </button>
+                <button class="btn btn-primary" style="margin-left: 1em"> -->
+                    <a (click)="selectViewType('L')" ><i class="fa fa-list" aria-hidden="true" style="margin-left: 1em"></i></a>
+                <!-- </button>
+                <button class="btn btn-primary" style="margin-left: 1em"> -->
+                    <a (click)="selectViewType('T')" ><i class="fa fa-picture-o" aria-hidden="true" style="margin-left: 1em"></i></a>
+                    <a routerLink="/home/student-create" ><i class="fa fa-file-excel-o" aria-hidden="true" style="margin-left: 1em"></i></a>
+                    <a routerLink="/home/student-create" ><i class="fa fa-file-pdf-o" aria-hidden="true" style="margin-left: 1em"></i></a>
+                <!-- </button> -->
             </div>
         </div>
     </div>

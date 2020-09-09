@@ -1,27 +1,45 @@
-<div class="card m-3">
-    <h5 class="card-header">All registered users:</h5>
-    <div class="card-body table-responsive">
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <th>Name</th>
-                <th>UserName</th>
-                <th>Password</th>
-                <th>Action</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of usersPaging">
-                    <td>{{user.fullName}}</td>
-                    <td>{{user.userName}}</td>
-                    <td>{{user.password}}</td>
-                    <td>
-                        <a (click)="deleteUser(user.userId)" class="text-danger">Delete</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div style="margin-top: 10px;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">All registered users who have the authority to access the app.</p>
+                    <a routerLink='/home/user' class="btn btn-primary"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Users</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Schools</h5>
+                    <p class="card-text">List of schools.</p>
+                    <a routerLink='/home/school' class="btn btn-primary"><i class="fa fa-university" aria-hidden="true"></i>&nbsp;Schools</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card-footer">
-        <app-common-paging >
-        </app-common-paging>
+    <div style="margin-top: 10px;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Students</h5>
+                        <p class="card-text">List of students.</p>
+                        <a routerLink='/home/student' class="btn btn-primary"><i class="fa fa-child" aria-hidden="true"></i>&nbsp;Students</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Pending Receipts</h5>
+                        <p class="card-text">List of pending receipts.</p>
+                        <a routerLink='/home' class="btn btn-primary"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Receipts</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+

@@ -42,15 +42,14 @@ export class StudentManageComponent implements OnInit {
     this.pagingList = pagingList;
   }
 
-  selectViewType(event: any){
-    this.viewType = event.target.value;
+  selectViewType(val: string){
+    this.viewType = val;
     if ( this.viewType == "L") {
       this.recordsPerPage = 2;
     }
     else {
       this.recordsPerPage = 1;
     }
-    console.log(event.target.value);
   }
 
   loadAllStudents() {
